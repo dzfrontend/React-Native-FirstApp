@@ -1,4 +1,4 @@
-package com.rn;
+package com.tabbar;
 
 import android.app.Application;
 

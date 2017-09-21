@@ -9,24 +9,76 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
+import TabNavigator from 'react-native-tab-navigator';
+import {Dimensions} from 'react-native'
 
-export default class RN extends Component {
+const deviceW = Dimensions.get('window').width
+
+const basePx = 375
+
+function px2dp(px) {
+  return px *  deviceW / basePx
+}
+class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+          Home
         </Text>
       </View>
+    )
+  }
+}
+
+class Profile extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Profile
+        </Text>
+      </View>
+    )
+  }
+}
+export default class TabBar extends Component {
+
+  
+  constructor(props) {
+    super(props);
+    this.state= {
+      selectedTab: 'home'
+    };
+  }
+  render() {
+    return (
+      <TabNavigator style={styles.container}>
+        {/*可以用样式对renderIcon图片进行着色*/}
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'home'}
+          title="Home"
+          selectedTitleStyle={{color: "#3496f0"}}
+          renderIcon={() => <Image source={require('./res/images/ic_polular.png')} style={styles.tabBarImg} />}
+          renderSelectedIcon={() => <Image source={require('./res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'red'}]} />}
+          selectedTitleStyle={{color:'red'}}
+          onPress={() => this.setState({selectedTab: 'home'})}>
+          <Home/>
+        </TabNavigator.Item>
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'profile'}
+          title="Profile"
+          selectedTitleStyle={{color: "#3496f0"}}
+          renderIcon={() => <Image source={require('./res/images/ic_trending.png')} style={styles.tabBarImg} />}
+          renderSelectedIcon={() => <Image source={require('./res/images/ic_trending.png')} style={[styles.tabBarImg,{tintColor:'red'}]} />}
+          selectedTitleStyle={{color:'red'}}
+          onPress={() => this.setState({selectedTab: 'profile'})}>
+          <Profile/>
+        </TabNavigator.Item>
+      </TabNavigator>
     );
   }
 }
@@ -48,6 +100,10 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  tabBarImg: {
+    width: 22,
+    height: 22
+  }
 });
 
-AppRegistry.registerComponent('RN', () => RN);
+AppRegistry.registerComponent('TabBar', () => TabBar);
