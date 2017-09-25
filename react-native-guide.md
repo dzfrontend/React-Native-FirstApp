@@ -9,11 +9,33 @@
 >用的是第三方组件react-native-tab-navigator  
 >文档：<https://github.com/happypancake/react-native-tab-navigator>
 
-#### Navigator导航组件
+#### Navigator路由组件
 
+>用的是react-native内置组件Navigator
 
+#### 自定义NavigationBar
 
-启动项目后可以用浏览器访问<http://localhost:8081/index.android.bundle?platform=android>看看是否可以看到打包后的脚本，有就打包成功。
+>在Navigator的基础上加上顶部导航栏
+	
+initialRoute初始化的时候显示某个组件，renderScene将route和navigator当作外部参数传入组件，该组件需要的时候就可以用到navigator和route。
+
+	export default class TabBar extends Component {
+	  render() {
+	    return (
+	      <View>
+	        <Navigator
+	          initialRoute={{
+	            component: Boy
+	          }}
+	          renderScene={ (route,navigator) => {
+	            let Component = route.component
+	            return <Component navigator={navigator} {...route.params} />
+	          }}
+	        ></Navigator>
+	      </View>
+	    );
+	  }
+	}
 
 
 
