@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 
 import Girl from './NavigatorGirl'
+import NavigationBar from './NavigationBar'
 
 export default class Boy extends Component{
 	constructor(props){
@@ -17,6 +18,13 @@ export default class Boy extends Component{
 	render(){
 		return(
 			<View style={styles.container}>
+				<NavigationBar
+		      		title='男孩'
+		      		statusBar={{
+		      			backgroundColor:'red'
+		      		}}
+		      		style={{backgroundColor:'#EE6363'}}
+		      	/>
 				<Text style={styles.text}>I am boy</Text>
 				{/*点击时跳转到Girl组件页面并且携带参数，
 				params里面的onCallBack为子页面向父页面回传的数据*/}
@@ -44,7 +52,6 @@ const styles = StyleSheet.create({
 	container:{
 		flex:1,
 		backgroundColor:'gray',
-		justifyContent:'center'
 	},
 	text:{
 		fontSize:20,

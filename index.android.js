@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 
 import Boy from './NavigatorBoy'
-
 export default class TabBar extends Component {
   constructor(props) {
     super(props);
