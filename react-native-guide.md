@@ -37,7 +37,11 @@ initialRoute初始化的时候显示某个组件，renderScene将route和navigat
 
 >在Navigator的基础上加上顶部导航栏
 	
+#### ListView
 
+>ListView列表、下拉刷新
+
+ListView列表组件
 
 
 

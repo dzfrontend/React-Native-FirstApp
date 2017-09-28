@@ -10,10 +10,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  ListView
 } from 'react-native';
 
-import Boy from './NavigatorBoy'
+import ListViewComponent from './ListView'
+
+
 export default class TabBar extends Component {
   constructor(props) {
     super(props);
@@ -21,16 +24,7 @@ export default class TabBar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/*renderScene渲染路由*/}
-        <Navigator
-          initialRoute={{
-            component: Boy
-          }}
-          renderScene={ (route,navigator) => {
-            let Component = route.component
-            return <Component navigator={navigator} {...route.params} />
-          }}
-        ></Navigator>
+        <ListViewComponent/>
       </View>
     );
   }
