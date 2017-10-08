@@ -14,7 +14,7 @@ import {
   ListView
 } from 'react-native';
 
-import ListViewComponent from './ListView'
+import Fetch from './Fetch'
 
 
 export default class TabBar extends Component {
@@ -24,7 +24,7 @@ export default class TabBar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ListViewComponent/>
+        <Fetch/>
       </View>
     );
   }

@@ -43,7 +43,52 @@ initialRoute初始化的时候显示某个组件，renderScene将route和navigat
 
 ListView列表组件
 
+#### Fetch
 
+fetch是react native内置的，也不需要导入直接使用。
+
+> Fetch封装
+
+	/**
+	 * fetch get和post封装
+	 * 使用：
+		HttpUtils.get(url).then( result => {})
+	 	HttpUtils.post(url,data).then( result => {})
+	**/
+	
+	export default class HttpUtils{
+	  static get(url){
+	    return new Promise( (resolve,reject) => { //用Promise处理fetch后的then操作
+	      fetch(url)
+	      .then(response => response.json())
+	      .then( result => {
+	        resolve(result)
+	      })
+	      .catch( error => {
+	        reject(error)
+	      })
+	    })
+	  }
+	  static post(url,data){
+	    return new Promise( (resolve,reject) => {
+	      fetch(url,{
+	        method: 'POST',
+	        header: {
+	          'Accept':'application/json',
+	          'Content-Type':'application/json'
+	        },
+	        body: JSON.stingify(data)
+	      })
+	      .then(response => response.json())
+	      .then( result => {
+	        resolve(result)
+	      })
+	      .catch( error => {
+	        reject(error)
+	      })
+	    })
+	  }
+	}
 
 
 
