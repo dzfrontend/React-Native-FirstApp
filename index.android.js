@@ -9,14 +9,12 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
-  Navigator,
-  ListView
+  View
 } from 'react-native';
 
-import Fetch from './Fetch'
+import Setup from './js/pages/Setup'
 
-
+/*
 export default class TabBar extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  
 });
+*/
 
-AppRegistry.registerComponent('TabBar', () => TabBar);
+//渲染根组件Setup
+AppRegistry.registerComponent('TabBar', () => Setup);

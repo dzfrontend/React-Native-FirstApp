@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import Setup from './js/pages/Setup'
+/*
 export default class TabBar extends Component {
   render() {
     return (
@@ -49,5 +51,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+*/
 
-AppRegistry.registerComponent('TabBar', () => TabBar);
+AppRegistry.registerComponent('TabBar', () => Setup);
