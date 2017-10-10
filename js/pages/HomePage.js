@@ -13,15 +13,8 @@ import {
   Image
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import {Dimensions} from 'react-native'
+import PopularPage from './PopularPage'
 
-const deviceW = Dimensions.get('window').width
-
-const basePx = 375
-
-function px2dp(px) {
-  return px *  deviceW / basePx
-}
 class Home extends Component {
   render() {
     return (
@@ -66,7 +59,7 @@ export default class HomePage extends Component {
           renderSelectedIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'red'}]} />}
           selectedTitleStyle={{color:'red'}}
           onPress={() => this.setState({selectedTab: 'home'})}>
-          <Home/>
+          <PopularPage/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}
