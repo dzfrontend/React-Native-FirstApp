@@ -1,7 +1,7 @@
 # React-Native-Github
 
 React Native实现的GitHub原生APP，用来查看GitHub最受欢迎与最热项目。
-参考的是：<https://github.com/crazycodeboy/GitHubPopular>
+参考：<https://github.com/crazycodeboy/GitHubPopular>
 
 ## 技术栈
 
@@ -11,7 +11,7 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 
 	1.搭建好React Native环境
 
-	2.clone https://github.com/dzfrontend/React-Native-Github.git,然后进入该目录
+	2.git clone https://github.com/dzfrontend/React-Native-Github.git,然后进入该目录
 
 	3.npm install安装依赖
 
@@ -40,7 +40,7 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 
 安装好后打开sdk的安装目录，先运行SDK Manager.exe，必须下载安装好Android SDK Tools和 Android SDK Platfo_tools，然后接下来的环境变量配置才有效。
 
-环境变量配置，参考<http://jingyan.baidu.com/article/48b558e31fb9867f38c09a8f.html>，其中SDK_HOME应改为ANDROID_HOME，不然后面会报错
+环境变量配置，参考<http://jingyan.baidu.com/article/48b558e31fb9867f38c09a8f.html>，其中所有的SDK_HOME应改为ANDROID_HOME，不然后面会报错
 
 配置好后，就可以在cmd运行adb命令，用于后面的adb devices查看已连接的设备，方便调试。
 
@@ -49,6 +49,8 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 编译node.js的C++模块时需要用到
 
 #### 5.react-native-cli快速创建RN项目环境
+
+安装过程中可能提示yarn不存在导致不成功，npm install yarn即可
 
 	安装React Native命令行工具：
 	npm install -g react-native-cli
