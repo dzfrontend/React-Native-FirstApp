@@ -2,7 +2,7 @@
 
 下面是本项目中用到的react-native知识点
 
-## react-native-guide
+## react-native项目准备工作
 
 #### 底部菜单TabBar
 
@@ -90,7 +90,7 @@ fetch是react native内置的，也不需要导入直接使用。
 	  }
 	}
 
-
+## react-native项目开始
 
 
 
