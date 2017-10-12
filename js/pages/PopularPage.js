@@ -28,12 +28,22 @@ export default class WelcomePage extends Component{
 				<NavigationBar
 					title={"最热"}
 					statusBar={{
-		      			backgroundColor:'red'
+		      			backgroundColor:'#2196F3'
 		      		}}
-		      		style={{backgroundColor:'#6495ED'}}
+		      		style={{backgroundColor:'#2196F3'}}
 				/>
+
+				{/*
+					tabBarBackgroundColor修改tab的背景颜色
+					tabBarInactiveTextColor修改tab未选中文字的颜色
+					tabBarActiveTextColor修改tab选中文字的颜色
+				*/}
 				<ScrollableTabView
 					renderTabBar={ () => <ScrollableTabBar/> }
+					tabBarBackgroundColor="#2196F3"
+					tabBarInactiveTextColor="mintcream"
+					tabBarActiveTextColor="#fff"
+					tabBarUnderlineStyle={{backgroundColor:'#e7e7e7',height:2}}
 				>
 					{/*
 					<Text tabLabel="JavaScript">JavaScript</Text>
@@ -42,6 +52,7 @@ export default class WelcomePage extends Component{
 					<PopularTab tabLabel="JavaScript"></PopularTab>
 					<PopularTab tabLabel="Java"></PopularTab>
 				</ScrollableTabView>
+
 				{/*
 					<Text
 						onPress={ () => {
