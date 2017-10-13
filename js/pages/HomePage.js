@@ -53,21 +53,21 @@ export default class HomePage extends Component {
         {/*可以用样式对renderIcon图片进行着色*/}
         <TabNavigator.Item
           selected={this.state.selectedTab === 'home'}
-          title="Home"
-          selectedTitleStyle={{color: "#3496f0"}}
+          title="最热"
+          selectedTitleStyle={{color: "#2196F3"}}
           renderIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={styles.tabBarImg} />}
-          renderSelectedIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'red'}]} />}
-          selectedTitleStyle={{color:'red'}}
+          renderSelectedIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
+          selectedTitleStyle={{color:'#2196F3'}}
           onPress={() => this.setState({selectedTab: 'home'})}>
           <PopularPage/>
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}
           title="Profile"
-          selectedTitleStyle={{color: "#3496f0"}}
+          selectedTitleStyle={{color: "#2196F3"}}
           renderIcon={() => <Image source={require('../../res/images/ic_trending.png')} style={styles.tabBarImg} />}
-          renderSelectedIcon={() => <Image source={require('../../res/images/ic_trending.png')} style={[styles.tabBarImg,{tintColor:'red'}]} />}
-          selectedTitleStyle={{color:'red'}}
+          renderSelectedIcon={() => <Image source={require('../../res/images/ic_trending.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
+          selectedTitleStyle={{color:'#2196F3'}}
           onPress={() => this.setState({selectedTab: 'profile'})}>
           <Profile/>
         </TabNavigator.Item>

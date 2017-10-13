@@ -4,7 +4,7 @@
 
 ## react-native项目准备工作
 
-#### 底部菜单TabBar
+#### 底部菜单TabBar 第三方组件
 
 >用的是第三方组件react-native-tab-navigator  
 >文档：<https://github.com/happypancake/react-native-tab-navigator>
@@ -91,6 +91,50 @@ fetch是react native内置的，也不需要导入直接使用。
 	}
 
 ## react-native项目开始
+
+#### react-native-scrollable-tab-view 第三方组件
+
+>可滑动tab切换
+
+#### ListView上拉刷新
+
+>用到react-native的RefreshControl组件
+
+RefreshControl组件中属性refreshing和onRefresh：  
+  refreshing为true显示loading，false隐藏loading  
+  onRefresh在上拉操作的时候触发
+	
+	constructor(props) {
+	  super(props);
+	  this.state = {
+	    dataSource:new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2 }),
+	    isLoading:false,
+	  }
+	}
+	loadData = () => {
+	  this.setState({
+	    isLoading: true
+	  })
+	  //数据请求成功后
+	  this.setState({
+	    dataSource: this.state.dataSource.cloneWithRows('请求成功后的数据'),
+	    isLoading: false
+	  })
+	}
+	render(){
+	  return <View>
+	    <ListView
+	      dataSource={this.state.dataSource}
+	      renderRow={ data => this.renderRowHandle(data)}
+	      refreshControl={
+	        <RefreshControl
+	          refreshing={this.state.isLoading}
+	          onRefresh={() => this.loadData()}
+	        />
+	      }
+	    />
+	  </View>
+	}
 
 
 

@@ -7,7 +7,8 @@ import{
 	StyleSheet,
 	Text,
 	TextInput,
-	ListView
+	ListView,
+	RefreshControl
 } from 'react-native'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view' //可滑动tab切换组件
 
@@ -76,17 +77,23 @@ class PopularTab extends Component{
 		super(props);
 		this.state = {
 			// result:'',
-			dataSource:new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2 })//listView r1不等于r2的时候渲染数据
+			dataSource:new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2 }),//listView r1不等于r2的时候渲染数据
+			isLoading:false, //用于上拉刷新
 		}
 		this.dataRepository = new DataRepository() //实例化这个类
 	}
 	loadData = () => {
-		let url = URL + this.props.tabLabel + QUERY //this.text为文本框输入的内容
+		this.setState({
+			isLoading: true
+		})
+
+		let url = URL + this.props.tabLabel + QUERY
 		this.dataRepository.fetchNetRepository(url)
 		.then( result => {
 			this.setState({
 				// result: JSON.stringify(result) //将obj转化为字符串
-				dataSource: this.state.dataSource.cloneWithRows(result.items)
+				dataSource: this.state.dataSource.cloneWithRows(result.items),
+				isLoading: false //数据请求成功不显示上拉刷新的loading
 			})
 		})
 		.catch( error => {
@@ -100,11 +107,21 @@ class PopularTab extends Component{
 		return <RepositoryCell data={data}/>
 	}
 	render(){
-		return <View>
+		return <View style={{flex:1}}>
 			{/*<Text style={{height:500}}>{this.state.result}</Text>*/}
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={ data => this.renderRowHandle(data)}
+				refreshControl={
+					<RefreshControl
+						refreshing={this.state.isLoading}
+						onRefresh={() => this.loadData()}
+						colors={['#2196F3']}
+						tintColor={'#2196F3'}
+						title={'Loading...'}
+						titleColor={'#2196F3'}
+					/>
+				}
 			/>
 		</View>
 	}
