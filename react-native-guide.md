@@ -94,7 +94,7 @@ fetch是react native内置的，也不需要导入直接使用。
 
 #### react-native-scrollable-tab-view 第三方组件
 
->可滑动tab切换
+>可滑动tab切换，用法查看github。
 
 #### ListView上拉刷新
 
@@ -136,9 +136,11 @@ RefreshControl组件中属性refreshing和onRefresh：
 	  </View>
 	}
 
+#### AsyncStorage
 
+>异步的，持久化的key-value存储系统,React Native官方推荐的数据存储方式，旨在代替LocalStorage
 
-	
+>用法和LocalStorage类似，具体查看文档。
 
 
 
