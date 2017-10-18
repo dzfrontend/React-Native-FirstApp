@@ -13,38 +13,16 @@ import {
   Image
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import PopularPage from './PopularPage'
+import PopularPage from './PopularPage' //最热组件
+import UserPage from './UserPage'
 
-class Home extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Home
-        </Text>
-      </View>
-    )
-  }
-}
 
-class Profile extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Profile
-        </Text>
-      </View>
-    )
-  }
-}
 export default class HomePage extends Component {
 
-  
   constructor(props) {
     super(props);
     this.state= {
-      selectedTab: 'home'
+      selectedTab: 'popular'
     };
   }
   render() {
@@ -52,24 +30,25 @@ export default class HomePage extends Component {
       <TabNavigator style={styles.container}>
         {/*可以用样式对renderIcon图片进行着色*/}
         <TabNavigator.Item
-          selected={this.state.selectedTab === 'home'}
+          selected={this.state.selectedTab === 'popular'}
           title="最热"
           selectedTitleStyle={{color: "#2196F3"}}
           renderIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={styles.tabBarImg} />}
           renderSelectedIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
-          selectedTitleStyle={{color:'#2196F3'}}
-          onPress={() => this.setState({selectedTab: 'home'})}>
+          onPress={() => this.setState({selectedTab: 'popular'})}
+        >
           <PopularPage/>
         </TabNavigator.Item>
         <TabNavigator.Item
-          selected={this.state.selectedTab === 'profile'}
-          title="Profile"
+          selected={this.state.selectedTab === 'user'}
+          title="我的"
           selectedTitleStyle={{color: "#2196F3"}}
-          renderIcon={() => <Image source={require('../../res/images/ic_trending.png')} style={styles.tabBarImg} />}
-          renderSelectedIcon={() => <Image source={require('../../res/images/ic_trending.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
-          selectedTitleStyle={{color:'#2196F3'}}
-          onPress={() => this.setState({selectedTab: 'profile'})}>
-          <Profile/>
+          renderIcon={() => <Image source={require('../../res/images/ic_my.png')} style={styles.tabBarImg} />}
+          renderSelectedIcon={() => <Image source={require('../../res/images/ic_my.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
+          onPress={() => this.setState({selectedTab: 'user'})}
+        >
+          <UserPage {...this.props}/>
+          {/*{...this.props}把路由传递给子组件*/}
         </TabNavigator.Item>
       </TabNavigator>
     );

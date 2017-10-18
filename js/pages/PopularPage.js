@@ -1,5 +1,5 @@
 /**
-*WelcomePage.js引导页
+* 最热模块
 **/
 import React, { Component } from 'react'
 import{
