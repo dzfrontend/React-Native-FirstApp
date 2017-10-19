@@ -1,3 +1,4 @@
+// popular模块获取数据封装
 export default class DataRepository{
 	fetchNetRepository(url){
 		return new Promise( (resolve,reject) => {

@@ -18,9 +18,9 @@ export default class UserPage extends Component{
 				<NavigationBar
 					title={"我的"}
 					statusBar={{
-		      			backgroundColor:'#6495ED'
+		      			backgroundColor:'#2196F3'
 		      		}}
-		      		style={{backgroundColor:'#6495ED'}}
+		      		style={{backgroundColor:'#2196F3'}}
 				/>
 				<Text 
 					style={styles.text}
