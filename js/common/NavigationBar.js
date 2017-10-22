@@ -1,3 +1,13 @@
+/**
+* 顶部导航栏封装共用组件
+* 例：<NavigationBar
+		title={"最热"}
+		statusBar={{
+  			backgroundColor:'#2196F3'
+  		}}
+  		style={{backgroundColor:'#2196F3'}}
+	/>
+**/
 import React, { Component, PropTypes } from 'react'
 import {
 	View,

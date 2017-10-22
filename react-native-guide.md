@@ -142,5 +142,7 @@ RefreshControl组件中属性refreshing和onRefresh：
 
 >用法和LocalStorage类似，具体查看文档。
 
+#### react-native-check-box第三方组件
 
+>这是第三方复选框组件，用在订阅标签模块
 

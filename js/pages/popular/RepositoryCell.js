@@ -25,7 +25,7 @@ export default class RespositoryCell extends Component{
 						<Text>Stars:</Text>
 						<Text>{this.props.data.stargazers_count}</Text>
 					</View>
-					<Image source={require('../../res/images/ic_star.png')} style={{width:22,height:22}}/>
+					<Image source={require('../../../res/images/ic_star.png')} style={{width:22,height:22}}/>
 				</View>
 			</View>
 		</TouchableOpacity>

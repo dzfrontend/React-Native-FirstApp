@@ -14,16 +14,64 @@ import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab
 
 import NavigationBar from '../common/NavigationBar'
 import DataRepository from '../expand/dao/DataRepository'//请求数据方法
-import RepositoryCell from '../common/RepositoryCell'
+import RepositoryCell from './popular/RepositoryCell'
+import LanguageDao,{FLAG_LANGUAGE} from '../expand/dao/LanguageDao' //标签的本地存储
+
 //api请求接口https://api.github.com/search/repositories?q=js&sort=starts，
 //其中q=js参数请求的是js相关内容，参数可变如q=ios请求ios内容
 const URL = 'https://api.github.com/search/repositories?q='
 const QUERY = '&sort=starts'
 
 export default class WelcomePage extends Component{
-	
-	
+	constructor(props) {
+		super(props);
+		this.LanguageDao = new LanguageDao(FLAG_LANGUAGE.flag_key)
+		this.state = {
+			languages: []
+		}
+	}
+	//本地存储
+	loadData(){
+		//取AsyncStorage
+		this.LanguageDao.fetchStorage()
+		.then( result => {
+			this.setState({
+				languages: result
+			})
+		})
+		.catch( error => {
+			console.log(error)
+		})
+	}
+
+	componentDidMount() {
+		this.loadData()
+	}
 	render(){
+		let content = this.state.languages.length > 0 
+		? <ScrollableTabView
+			renderTabBar={ () => <ScrollableTabBar/> }
+			tabBarBackgroundColor="#2196F3"
+			tabBarInactiveTextColor="mintcream"
+			tabBarActiveTextColor="#fff"
+			tabBarUnderlineStyle={{backgroundColor:'#e7e7e7',height:2}}
+		>
+			{/*
+			<Text tabLabel="JavaScript">JavaScript</Text>
+			<Text tabLabel="Java">Java</Text>
+			*/}
+			{/*
+			读取本地存储已经checked为true的标签进行展示
+			*/}
+			{
+				this.state.languages.map( (result,i,arr) => {
+					let language = arr[i]
+					return language.checked ? <PopularTab tabLabel={language.name} key={i}></PopularTab> : null
+				})
+			}
+		</ScrollableTabView>
+		:null;
+
 		return(
 			<View style={styles.container}>
 				<NavigationBar
@@ -39,33 +87,7 @@ export default class WelcomePage extends Component{
 					tabBarInactiveTextColor修改tab未选中文字的颜色
 					tabBarActiveTextColor修改tab选中文字的颜色
 				*/}
-				<ScrollableTabView
-					renderTabBar={ () => <ScrollableTabBar/> }
-					tabBarBackgroundColor="#2196F3"
-					tabBarInactiveTextColor="mintcream"
-					tabBarActiveTextColor="#fff"
-					tabBarUnderlineStyle={{backgroundColor:'#e7e7e7',height:2}}
-				>
-					{/*
-					<Text tabLabel="JavaScript">JavaScript</Text>
-					<Text tabLabel="Java">Java</Text>
-					*/}
-					<PopularTab tabLabel="JavaScript"></PopularTab>
-					<PopularTab tabLabel="Java"></PopularTab>
-				</ScrollableTabView>
-
-				{/*
-					<Text
-						onPress={ () => {
-							this.loadData()
-						}}
-					>点我获取数据</Text>
-					<TextInput 
-						style={{height:40}}
-						onChangeText={text => this.text = text}
-					/>
-					<Text style={{height:500}}>{this.state.result}</Text>
-				*/}
+				{content}
 			</View>
 		)
 	}

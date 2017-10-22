@@ -8,7 +8,8 @@ import{
 	Text,
 	TouchableOpacity,
 	ScrollView,
-	Image
+	Image,
+	Alert
 } from 'react-native'
 
 import NavigationBar from '../../common/NavigationBar'
@@ -104,6 +105,27 @@ export default class UserPage extends Component{
 		this.LanguageDao.save(this.state.dataArray) //记录保存到本地存储
 		this.props.navigator.pop();
 	}
+	onBack(){
+		if(this.changeValue.length === 0){
+			this.props.navigator.pop() //没变化
+			return
+		}
+		Alert.alert(
+            '提示',
+            '要保存修改吗?',
+            [
+                {
+                    text: '否', onPress: () => {
+                    this.props.navigator.pop();
+                }
+                }, {
+                text: '是', onPress: () => {
+                    this.onSave();
+                }
+            }
+            ]
+        )
+	}
 	renderCheckBox(data){
 		return(
 			<CheckBox
@@ -135,7 +157,7 @@ export default class UserPage extends Component{
 					statusBar={{
 		      			backgroundColor:'#2196F3'
 		      		}}
-					leftButton={NavigationBarUtils.getLeftButton(() => this.onSave())}
+					leftButton={NavigationBarUtils.getLeftButton(() => this.onBack())}
 		      		rightButton={rightButton}
 		      		style={{backgroundColor:'#2196F3'}}
 				/>

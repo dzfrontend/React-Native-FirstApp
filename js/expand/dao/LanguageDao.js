@@ -1,11 +1,12 @@
+//UserPage模块自定义标签本地存储
 import React, { Component } from 'react'
 import{
 	AsyncStorage
 } from 'react-native'
 
-import keys from '../../../res/data/keys.json' //自定义标签页
+import keys from '../../../res/data/keys.json' //自定义标签
 
-//定义一个变量区分两个模块:flag_key为自定义标签模块 
+//定义一个变量区分两个模块(用于本地存储区分):flag_key为自定义标签模块 
 export var FLAG_LANGUAGE={flag_language:'flag_language_language',flag_key:'flag_language_key'}
 
 export default class LanguageDao{ //调用先new 然后传一个变量flag
