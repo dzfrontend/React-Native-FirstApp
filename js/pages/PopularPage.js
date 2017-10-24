@@ -29,6 +29,7 @@ export default class WelcomePage extends Component{
 		this.state = {
 			languages: []
 		}
+		this.loadData()
 	}
 	//本地存储
 	loadData(){
@@ -45,6 +46,9 @@ export default class WelcomePage extends Component{
 	}
 
 	componentDidMount() {
+		this.loadData()
+	}
+	componentDidUpdate() {
 		this.loadData()
 	}
 	render(){

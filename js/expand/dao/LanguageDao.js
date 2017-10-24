@@ -20,19 +20,19 @@ export default class LanguageDao{ //调用先new 然后传一个变量flag
 			AsyncStorage.getItem(this.flag,(err,result) => {
 				if(err){
 					reject(err) //有错误，把错误告诉调用者
+					return
+				}
+				if(!result){
+					//没有本地存储，保存数据keys到本地存储并resolve返回到外面
+					var data = this.flag === FLAG_LANGUAGE.flag_key ? keys : null
+					this.save(data)
+					resolve(data)
 				}else{
-					if(!result){
-						//result不为空 把结果返回给调用者，JSON.parse把保存的json类型的字符串转化为对象
-						try{
-							resolve(JSON.parse(result))
-						}catch(e){
-							reject(e)
-						}
-					}else{
-						//没有本地存储，保存数据keys到本地存储并resolve返回到外面
-						var data = this.flag === FLAG_LANGUAGE.flag_key ? keys : null
-						this.save(data)
-						resolve(data)
+					//result不为空 把结果返回给调用者，JSON.parse把保存的json类型的字符串转化为对象
+					try{
+						resolve(JSON.parse(result))
+					}catch(e){
+						reject(e)
 					}
 				}
 			})
