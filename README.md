@@ -28,7 +28,7 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 
 #### 1.安装Node.js
 
-这个是必须的
+这个是必须的，本项目中node v8.7.0，npm v5.4.2，如果npm install下载很慢可以换成淘宝镜像npm config set registry https://registry.npm.taobao.org
 
 #### 2.安装jdk
 
