@@ -68,6 +68,8 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 	运行react-native安卓项目
 	react-native run-android
 
+**遇到的常见报错如下：**
+
 问题：找不到sdk或者 无法正常化sdk路径  
 解决：jdk或sdk环境变量没有配置好，返回配置。
 

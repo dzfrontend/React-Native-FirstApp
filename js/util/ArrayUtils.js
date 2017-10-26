@@ -13,4 +13,18 @@ export default class ArrayUtils{
         }
         array.push(item);
     }
+    /**
+     * 克隆一个数组
+     * 使用：ArrayUtils.clone(array)
+     * @param 参数为array，array为要被克隆的数组
+     * @returns {Array} 返回一个新的数组
+     **/
+    static clone(array){
+        if(!array) return []
+        let newArray = []
+        for(var i=0,len=array.length;i<len;i++){
+            newArray[i] = array[i]
+        }
+        return newArray
+    }
 }

@@ -146,3 +146,6 @@ RefreshControl组件中属性refreshing和onRefresh：
 
 >这是第三方复选框组件，用在订阅标签模块
 
+#### react-native-sortable-listview第三方组件
+
+>第三方拖拽排序组件

@@ -15,7 +15,7 @@ import{
 import NavigationBar from '../../common/NavigationBar'
 import NavigationBarUtils from '../../util/NavigationBarUtils'
 
-import LanguageDao,{ FLAG_LANGUAGE } from '../../expand/dao/LanguageDao' //类和变量
+import LanguageDao,{ FLAG_LANGUAGE } from '../../expand/dao/LanguageDao' //类和变量 本地存储信息
 import CheckBox from 'react-native-check-box' //第三方组件checkbox
 import ArrayUtils from '../../util/ArrayUtils' //array数组封装方法共用库
 

@@ -9,7 +9,8 @@ import{
 } from 'react-native'
 
 import NavigationBar from '../common/NavigationBar'
-import UserCustomKeyPage from './user/CustomKeyPage'
+import CustomKeyPage from './user/CustomKeyPage' //订阅标签组件
+import SortKeyPage from './user/SortKeyPage' //标签排序组件
 
 export default class UserPage extends Component{
 	render(){
@@ -26,11 +27,20 @@ export default class UserPage extends Component{
 					style={styles.text}
 					onPress={ () => {
 						this.props.navigator.push({
-							component: UserCustomKeyPage,
+							component: CustomKeyPage,
 							params: {...this.props} //把父组件的路由信息用作路由参数
 						})
 					}}
 				>自定义标签</Text>
+				<Text 
+					style={styles.text}
+					onPress={ () => {
+						this.props.navigator.push({
+							component: SortKeyPage,
+							params: {...this.props} //把父组件的路由信息用作路由参数
+						})
+					}}
+				>标签排序</Text>
 			</View>
 		)
 	}
