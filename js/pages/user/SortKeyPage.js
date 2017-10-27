@@ -8,7 +8,8 @@ import{
 	Text,
 	TouchableHighlight,
 	Image,
-	TouchableOpacity
+	TouchableOpacity,
+	Alert
 } from 'react-native'
 
 import NavigationBar from '../../common/NavigationBar'
@@ -97,10 +98,49 @@ export default class SortKeyPage extends Component{
 	}
 
 	onBack(){
-
+		if(ArrayUtils.isEqual(this.originalCheckedArray,this.state.checkedArray)){
+			//原始选中标签数组和最后选中标签数组元素相同时，返回不进行其他操作
+			this.props.navigator.pop()
+			return
+		}
+		Alert.alert(
+            '提示',
+            '要保存修改吗?',
+            [
+                {
+                    text: '否', onPress: () => {
+                    this.props.navigator.pop();
+                }
+                }, {
+                text: '是', onPress: () => {
+                    this.onSave();
+                }
+            }
+            ]
+        )
 	}
 	onSave(){
-
+		if(ArrayUtils.isEqual(this.originalCheckedArray,this.state.checkedArray)){
+			this.props.navigator.pop()
+			return
+		}
+		this.getSortResult()
+		this.LanguageDao.save(this.sortResultArray) //把最后排序的数组存到本地存储
+		this.props.navigator.pop()
+	}
+	//得到最后拖拽排序后的结果
+	getSortResult(){
+		this.sortResultArray = ArrayUtils.clone(this.dataArray)
+		//遍历排序之前订阅(选中)标签
+		for(let i=0,l=this.originalCheckedArray.length;i<l;i++){
+			let item = this.originalCheckedArray[i]
+			//获取item在原始数组中的索引(位置)
+			let index = this.dataArray.indexOf(item)
+			//排序之前订阅(选中)标签和排序之后订阅标签元素相同，只是顺序不同，
+			//所以checkedArray[i]只需要用splice替换originalCheckedArray[i]在原始数组中相应的位置
+			this.sortResultArray.splice(index,1,this.state.checkedArray[i])
+		}
+		
 	}
 }
 
