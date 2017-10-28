@@ -13,7 +13,7 @@ import{
 } from 'react-native'
 
 import NavigationBar from '../../common/NavigationBar'
-import NavigationBarUtils from '../../util/NavigationBarUtils'
+import ViewUtils from '../../util/ViewUtils'
 import SortableListView from 'react-native-sortable-listview' //拖拽排序组件
 
 import LanguageDao,{ FLAG_LANGUAGE } from '../../expand/dao/LanguageDao' //本地存储信息
@@ -62,25 +62,17 @@ export default class SortKeyPage extends Component{
 
 	}
 	render(){
-		//导航栏右侧按钮
-		let rightButton = <TouchableOpacity
-			onPress={ () => this.onSave() }
-		>
-			<View style={{margin:10}}>
-				<Text style={styles.title}>保存</Text>
-			</View>
-		</TouchableOpacity>
 
 		return(
 			<View style={styles.container}>
 				<NavigationBar
-					title={"Sort"}
+					title={"标签排序"}
 					statusBar={{
 		      			backgroundColor:'#2196F3'
 		      		}}
 		      		style={{backgroundColor:'#2196F3'}}
-		      		leftButton={NavigationBarUtils.getLeftButton(() => this.onBack())}
-		      		rightButton={rightButton}
+		      		leftButton={ViewUtils.getLeftButton(() => this.onBack())}
+		      		rightButton={ViewUtils.getRightButton('保存',()=>this.onSave())}
 				/>
 				{/*order为key、onRowMoved里面内置的，只需要改数据this.state.checkedArray、renderRow渲染每一行数据*/}
 				<SortableListView

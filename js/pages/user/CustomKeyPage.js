@@ -13,7 +13,7 @@ import{
 } from 'react-native'
 
 import NavigationBar from '../../common/NavigationBar'
-import NavigationBarUtils from '../../util/NavigationBarUtils'
+import ViewUtils from '../../util/ViewUtils'
 
 import LanguageDao,{ FLAG_LANGUAGE } from '../../expand/dao/LanguageDao' //类和变量 本地存储信息
 import CheckBox from 'react-native-check-box' //第三方组件checkbox
@@ -79,10 +79,14 @@ export default class UserPage extends Component{
 	}
 	//checkbox
 	checkBoxOnClick = (data) => {
+		// if(!this.isRemoveKey){ //
+
+		// }
 		data.checked = !data.checked
+		ArrayUtils.updateArray(this.changeValue,data)
 		{
 		/*
-		//这里的代码移动到了公用util
+		这里的代码移动到了公用util
 		for(var i=0,len=this.changeValue.length;i<len;i++){
 			//这里作用是把已经存在的元素去掉
 			var temp = this.changeValue[i]
@@ -94,14 +98,18 @@ export default class UserPage extends Component{
 		this.changeValue.push(data) //记录用户自定义标签的修改
 		*/
 		}
-		ArrayUtils.updateArray(this.changeValue,data)
 	}
 
 	onSave(){
 		if(this.changeValue.length === 0){
-			this.props.navigator.pop() //没变化
-			return
+			this.props.navigator.pop()
+			return //changeValue用来判断状态有没有变化，length为0没变化不进行后续操作
 		}
+		for(let i=0,l=this.changeValue.length;i<l;i++){
+			//移除标签
+			ArrayUtils.remove(this.state.dataArray,this.changeValue[i])
+		}
+		//下面的代码标签移除和自定义标签共用
 		this.LanguageDao.save(this.state.dataArray) //记录保存到本地存储
 		this.props.navigator.pop();
 	}
@@ -127,6 +135,7 @@ export default class UserPage extends Component{
         )
 	}
 	renderCheckBox(data){
+		let isChecked = this.props.isRemoveKey ? false : data.checked //isRemoveKey是标签移除页面的话不让选中
 		return(
 			<CheckBox
 				style={{flex:1,padding:10}}
@@ -137,28 +146,22 @@ export default class UserPage extends Component{
 				unCheckedImage={
 					<Image source={require('./img/ic_check_box_outline_blank.png')}  style={{tintColor:'#6495ED'}}/>
 				}
-				isChecked={data.checked}
+				isChecked={isChecked}
 				onClick={ () => this.checkBoxOnClick(data) }
 			/>
 		)
 	}
 	render(){
-		let rightButton = <TouchableOpacity
-			onPress={ () => this.onSave() }
-		>
-			<View style={{margin:10}}>
-				<Text style={styles.title}>保存</Text>
-			</View>
-		</TouchableOpacity>
+		let rightButtonTitle = this.props.isRemoveKey ? '移除' : '保存'
 		return(
 			<View style={styles.container}>
 				<NavigationBar
-					title={"自定义标签"}
+					title={this.props.isRemoveKey ? "标签移除" : "自定义标签"}
 					statusBar={{
 		      			backgroundColor:'#2196F3'
 		      		}}
-					leftButton={NavigationBarUtils.getLeftButton(() => this.onBack())}
-		      		rightButton={rightButton}
+					leftButton={ViewUtils.getLeftButton(() => this.onBack())}
+		      		rightButton={ViewUtils.getRightButton(rightButtonTitle,()=>this.onSave())}
 		      		style={{backgroundColor:'#2196F3'}}
 				/>
 				<ScrollView>
@@ -175,10 +178,6 @@ const styles = StyleSheet.create({
 	},
 	text:{
 		fontSize:28
-	},
-	title:{
-		fontSize:20,
-		color:'#fff'
 	},
 	line:{
 		height:1,
