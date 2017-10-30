@@ -12,7 +12,8 @@
     "react-native-tab-navigator": "^0.3.4",
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-native-check-box": "^1.0.4",
-    "react-native-sortable-listview": "^0.1.1"
+    "react-native-sortable-listview": "^0.1.1",
+    "react-native-easy-toast": "^1.0.5"
   },
   "devDependencies": {
     "babel-jest": "17.0.2",

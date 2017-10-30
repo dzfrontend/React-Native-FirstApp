@@ -1,4 +1,9 @@
 # React-Native-Github
+![node](https://img.shields.io/badge/node-v8.7.0-brightgreen.svg)
+![npm](https://img.shields.io/badge/npm-v5.4.2-blue.svg)
+![webpack](https://img.shields.io/badge/webpack-v2.6.1-brightgreen.svg)
+![react](https://img.shields.io/badge/react-15.4.1-yellow.svg)
+![react-native](https://img.shields.io/badge/react-native-0.40.0-yellow.svg)
 
 React Native实现的GitHub原生APP，用来查看GitHub最受欢迎与最热项目。
 参考：<https://github.com/crazycodeboy/GitHubPopular>
@@ -28,7 +33,7 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 
 #### 1.安装Node.js
 
-这个是必须的，本项目中node v8.7.0，npm v5.4.2，如果npm install下载很慢可以换成淘宝镜像npm config set registry https://registry.npm.taobao.org
+这个是必须的，如果npm install下载很慢可以换成淘宝镜像npm config set registry https://registry.npm.taobao.org
 
 #### 2.安装jdk
 
@@ -113,8 +118,6 @@ React Native + ES6 + AsyncStorage + Fetch + Native Moudules + 第三方库
 	│   ├── expand                                  // 扩展
 	│   ├── config                                  // 配置项（常量、接口地址、路由、多语言化等预置数据）
 	│   ├── util                                    // 工具类（非UI组件）
-
-
 
 
 	

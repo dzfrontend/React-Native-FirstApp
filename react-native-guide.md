@@ -142,6 +142,10 @@ RefreshControl组件中属性refreshing和onRefresh：
 
 >用法和LocalStorage类似，具体查看文档。
 
+#### 离线缓存
+
+>在react-native中，有必要对网络请求后的数据存储到AsyncStorage，这样可以优化体验，设置一个时间段，在这个时间段内使用本地存储数据，过时后再请求网络数据。
+
 #### react-native-check-box第三方组件
 
 >这是第三方复选框组件，用在订阅标签模块
@@ -149,3 +153,7 @@ RefreshControl组件中属性refreshing和onRefresh：
 #### react-native-sortable-listview第三方组件
 
 >第三方拖拽排序组件
+
+#### react-native-easy-toast
+
+>第三方消息提示插件

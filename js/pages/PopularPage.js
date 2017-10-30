@@ -8,7 +8,8 @@ import{
 	Text,
 	TextInput,
 	ListView,
-	RefreshControl
+	RefreshControl,
+	DeviceEventEmitter
 } from 'react-native'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view' //可滑动tab切换组件
 
@@ -102,7 +103,6 @@ class PopularTab extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			// result:'',
 			dataSource:new ListView.DataSource({rowHasChanged:(r1,r2) => r1 !== r2 }),//listView r1不等于r2的时候渲染数据
 			isLoading:false, //用于上拉刷新
 		}
@@ -114,17 +114,33 @@ class PopularTab extends Component{
 		})
 
 		let url = URL + this.props.tabLabel + QUERY
-		this.dataRepository.fetchNetRepository(url)
+		this.dataRepository.fetchRepository(url)
 		.then( result => {
+			let items = result && result.items ? result.items : result?result:[] //result.items为本地存储里面的
 			this.setState({
-				// result: JSON.stringify(result) //将obj转化为字符串
-				dataSource: this.state.dataSource.cloneWithRows(result.items),
+				dataSource: this.state.dataSource.cloneWithRows(items),
 				isLoading: false //数据请求成功不显示上拉刷新的loading
+			})
+			//本地存储数据过时情况
+			if(result&&result.update_date&&!this.dataRepository.checkData(result.update_date)){
+				DeviceEventEmitter.emit('showToast','数据过时')
+				return this.dataRepository.fetchNetRepository(url) //获取网络数据
+			}else{
+				DeviceEventEmitter.emit('showToast','显示缓存数据')
+			}
+		})
+		.then( items => {
+			//本地存储数据过时获取数据后
+			if(!items || items.length === 0) return
+			DeviceEventEmitter.emit('showToast','显示网络数据')
+			this.setState({
+				dataSource: this.state.dataSource.cloneWithRows(items),
 			})
 		})
 		.catch( error => {
+			console.log(error)
 			this.setState({
-				result: JSON.stringify(error) //将错误显示出来
+				isLoading: false
 			})
 		})
 	}
@@ -134,7 +150,6 @@ class PopularTab extends Component{
 	}
 	render(){
 		return <View style={{flex:1}}>
-			{/*<Text style={{height:500}}>{this.state.result}</Text>*/}
 			<ListView
 				dataSource={this.state.dataSource}
 				renderRow={ data => this.renderRowHandle(data)}
