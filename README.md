@@ -1,9 +1,9 @@
 # React-Native-Github
-![node](https://img.shields.io/badge/node-v8.7.0-brightgreen.svg)
-![npm](https://img.shields.io/badge/npm-v5.4.2-blue.svg)
+![node](https://img.shields.io/badge/node-v6.11.0-brightgreen.svg)
+![npm](https://img.shields.io/badge/npm-v3.10.10-blue.svg)
 ![webpack](https://img.shields.io/badge/webpack-v2.6.1-brightgreen.svg)
-![react](https://img.shields.io/badge/react-15.4.1-yellow.svg)
-![react-native](https://img.shields.io/badge/react-native-0.40.0-yellow.svg)
+![react](https://img.shields.io/badge/react-v15.4.1-yellow.svg)
+![react-native](https://img.shields.io/badge/ReactNative-v0.40.0-yellow.svg)
 
 React Native实现的GitHub原生APP，用来查看GitHub最受欢迎与最热项目。
 参考：<https://github.com/crazycodeboy/GitHubPopular>
