@@ -12,7 +12,8 @@ import{
 import WelcomePage from './WelcomePage'
 
 function setup(){
-	//进行一些初始化配置
+	//进行一些初始化路由配置
+	//这样其他子组件就可以直接this.props.navigator和...this.props使用路由navigator和路由参数{...route.params}
 	class Root extends Component{
 		renderScene(route,navigator){
 			let Component = route.component

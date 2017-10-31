@@ -146,6 +146,28 @@ RefreshControl组件中属性refreshing和onRefresh：
 
 >在react-native中，有必要对网络请求后的数据存储到AsyncStorage，这样可以优化体验，设置一个时间段，在这个时间段内使用本地存储数据，过时后再请求网络数据。
 
+#### WebView
+
+>用于在app中加载网页
+
+	//WebView加载网页：
+	render(){
+	  return(
+	    <WebView 
+	      source={{uri:'https://github.com/facebook/react-native'}}
+	      onNavigationStateChange={this.onNavigationStateChange}
+	    ></WebView>
+	  )
+	}
+	onNavigationStateChange = (navState) => {
+	  //navState有其他信息
+	}
+	
+
+常用属性有source和onNavigationStateChange，其他属性查看官方文档  
+source用于指定WebView加载网页的链接  
+每次开始加载和加载结束都会调用onNavigationStateChange，并且携带处理参数
+
 #### react-native-check-box第三方组件
 
 >这是第三方复选框组件，用在订阅标签模块
