@@ -49,7 +49,8 @@ export default class HomePage extends Component {
             renderSelectedIcon={() => <Image source={require('../../res/images/ic_polular.png')} style={[styles.tabBarImg,{tintColor:'#2196F3'}]} />}
             onPress={() => this.setState({selectedTab: 'popular'})}
           >
-            <PopularPage/>
+            {/*...this.props路由等信息当作属性传递到组件*/}
+            <PopularPage {...this.props}/>
           </TabNavigator.Item>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'user'}

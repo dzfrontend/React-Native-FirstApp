@@ -17,6 +17,7 @@ import NavigationBar from '../common/NavigationBar'
 import DataRepository from '../expand/dao/DataRepository'//请求数据方法
 import RepositoryCell from './popular/RepositoryCell'
 import LanguageDao,{FLAG_LANGUAGE} from '../expand/dao/LanguageDao' //标签的本地存储
+import RespositoryDetail from './RespositoryDetail'
 
 //api请求接口https://api.github.com/search/repositories?q=js&sort=starts，
 //其中q=js参数请求的是js相关内容，参数可变如q=ios请求ios内容
@@ -71,7 +72,7 @@ export default class WelcomePage extends Component{
 			{
 				this.state.languages.map( (result,i,arr) => {
 					let language = arr[i]
-					return language.checked ? <PopularTab tabLabel={language.name} key={i}></PopularTab> : null
+					return language.checked ? <PopularTab tabLabel={language.name} key={i} {...this.props}></PopularTab> : null
 				})
 			}
 		</ScrollableTabView>
@@ -145,8 +146,25 @@ class PopularTab extends Component{
 		})
 	}
 
+	componentDidMount() {
+		this.loadData()
+	}
+
+	
 	renderRowHandle = (data) => {
-		return <RepositoryCell data={data}/>
+		return <RepositoryCell data={data} onWebViewClick={ () => this.onWebViewClickHandle(data)}/>
+	}
+	//RepositoryCell组件里面通过this.props.onWebViewClick调用
+	onWebViewClickHandle(data){
+		//点击列表跳转到详情页
+		this.props.navigator.push({
+			component: RespositoryDetail,
+			//向RespositoryDetail传递的参数
+			params:{
+				item: data,
+				...this.props //继续传递...this.props(路由...)
+			}
+		})
 	}
 	render(){
 		return <View style={{flex:1}}>
@@ -166,9 +184,7 @@ class PopularTab extends Component{
 			/>
 		</View>
 	}
-	componentDidMount() {
-		this.loadData()
-	}
+	
 }
 
 const styles = StyleSheet.create({

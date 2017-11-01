@@ -105,9 +105,11 @@ export default class UserPage extends Component{
 			this.props.navigator.pop()
 			return //changeValue用来判断状态有没有变化，length为0没变化不进行后续操作
 		}
-		for(let i=0,l=this.changeValue.length;i<l;i++){
-			//移除标签
-			ArrayUtils.remove(this.state.dataArray,this.changeValue[i])
+		if(this.isRemoveKey){
+			for(let i=0,l=this.changeValue.length;i<l;i++){
+				//移除标签
+				ArrayUtils.remove(this.state.dataArray,this.changeValue[i])
+			}
 		}
 		//下面的代码标签移除和自定义标签共用
 		this.LanguageDao.save(this.state.dataArray) //记录保存到本地存储

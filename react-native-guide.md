@@ -155,7 +155,7 @@ RefreshControl组件中属性refreshing和onRefresh：
 	  return(
 	    <WebView 
 	      source={{uri:'https://github.com/facebook/react-native'}}
-	      onNavigationStateChange={this.onNavigationStateChange}
+	      onNavigationStateChange={this.onNavigationStateChange(e)}
 	    ></WebView>
 	  )
 	}
